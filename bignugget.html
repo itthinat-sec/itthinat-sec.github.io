@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1KG Nugget | Nuggetology</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #261105 50%, #0d0d0d 100%);
+            background-attachment: fixed;
+            color: #e0e0e0;
+        }
+
+        /* ---------- HEADER ---------- */
+
+        header {
+            background: linear-gradient(90deg, #ff512f 0%, #f09819 100%);
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: inline-block;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #000000;
+            transform: scale(1.2);
+        }
+
+        /* ---------- RECIPE PAGE ---------- */
+
+        .recipe-page {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 35px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            transition: 0.3s ease;
+        }
+
+        .recipe-page:hover {
+            transform: scale(1.01);
+            border-color: #e96711;
+            box-shadow: 0 10px 30px rgba(233, 103, 17, 0.25);
+        }
+
+        .recipe-page h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 25px;
+            color: #ff8432;
+            text-shadow: 0 2px 10px rgba(255, 132, 50, 0.3);
+        }
+
+        .recipe-page img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            outline: 2px solid #e96711;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ---------- RECIPE INFO ---------- */
+
+        .recipe-info {
+            background-color: #2d1609;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #52260f;
+            margin-bottom: 25px;
+        }
+
+        .recipe-info p {
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .recipe-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .recipe-info strong {
+            color: #ffa162;
+        }
+
+        /* ---------- RECIPE SECTIONS ---------- */
+
+        .recipe-page h2 {
+            color: #ff8432;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
+
+        .recipe-page p,
+        .recipe-page li {
+            line-height: 1.7;
+            margin-bottom: 10px;
+            color: #cccccc;
+        }
+
+        .recipe-page ul,
+        .recipe-page ol {
+            padding-left: 30px;
+        }
+
+        .recipe-page li::marker {
+            color: #e96711;
+            font-weight: bold;
+        }
+
+        /* ---------- INGREDIENTS ---------- */
+
+        .ingredients-box {
+            background-color: #222222;
+            padding: 20px 25px;
+            border-radius: 10px;
+            border: 1px solid #333333;
+            border-left: 4px solid #e96711;
+        }
+
+        .ingredients-box ul {
+            margin: 0;
+        }
+
+        /* ---------- INSTRUCTIONS ---------- */
+
+        .instructions-box {
+            background-color: #222222;
+            padding: 20px 25px;
+            border-radius: 10px;
+            border: 1px solid #333333;
+            border-left: 4px solid #ff8432;
+        }
+
+        .instructions-box ol {
+            margin: 0;
+        }
+
+        /* ---------- BACK BUTTON ---------- */
+
+        .back-button {
+            display: inline-block;
+            background-color: #e96711;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(233, 103, 17, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #ff8432;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 132, 50, 0.4);
+        }
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background-color: #0d0d0d;
+            color: #888888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #222222;
+        }
+
+        /* ---------- NUGGET RAIN ---------- */
+
+        .nugget-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99999;
+            overflow: hidden;
+        }
+
+        .falling-nugget {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav a {
+                margin-left: 0;
+                font-size: 14px;
+            }
+
+            .recipe-page {
+                margin: 30px 15px;
+                padding: 22px;
+            }
+
+            .recipe-page h1 {
+                font-size: 30px;
+            }
+
+            .recipe-page h2 {
+                font-size: 23px;
+            }
+
+            .recipe-page img {
+                max-height: 300px;
+            }
+
+            .ingredients-box,
+            .instructions-box {
+                padding: 18px 20px;
+            }
+
+            .back-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        🧽 Nuggetology
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="tips.html">Tips</a>
+        <a href="about.html">About</a>
+    </nav>
+
+</header>
+
+<main class="recipe-page">
+
+    <h1>🧽 The 1KG Nugget</h1>
+
+    <img
+        src="https://i.ytimg.com/vi/m8dkjtNessU/maxresdefault.jpg"
+        alt="One kilogram nugget"
+    >
+
+    <div class="recipe-info">
+
+        <p>
+            <strong>⏱️ Cooking Time:</strong>
+            Approximately <strong><i>4 hours</i></strong>
+        </p>
+
+        <p>
+            <strong>🔥 Difficulty:</strong>
+            <strong><i>Questionable</i></strong>
+        </p>
+
+    </div>
+
+    <h2>🛒 Ingredients</h2>
+
+    <div class="ingredients-box">
+
+        <ul>
+
+            <li>
+                1 kilogram of chicken nuggets or chicken mixture
+            </li>
+
+            <li>
+                Breadcrumbs
+            </li>
+
+            <li>
+                Eggs
+            </li>
+
+            <li>
+                Flour
+            </li>
+
+            <li>
+                Salt and pepper
+            </li>
+
+            <li>
+                Cooking oil
+            </li>
+
+        </ul>
+
+    </div>
+
+    <h2>👨‍🍳 Instructions</h2>
+
+    <div class="instructions-box">
+
+        <ol>
+
+            <li>
+                Prepare your chicken mixture and season it with salt and pepper.
+            </li>
+
+            <li>
+                Shape the chicken mixture into one massive nugget.
+            </li>
+
+            <li>
+                Coat the nugget with flour.
+            </li>
+
+            <li>
+                Dip it into beaten eggs.
+            </li>
+
+            <li>
+                Cover the entire nugget with breadcrumbs.
+            </li>
+
+            <li>
+                Carefully cook the giant nugget until it is fully cooked.
+            </li>
+
+            <li>
+                Let it cool down slightly before cutting and serving.
+            </li>
+
+            <li>
+                Enjoy your absolutely gigantic nugget! 🍗
+            </li>
+
+        </ol>
+
+    </div>
+
+    <a href="index.html" class="back-button">
+        ← Back to Home
+    </a>
+
+</main>
+
+<footer>
+
+    <p>
+        &copy; 2026 Nuggetology | The Science of Snacking
+    </p>
+
+</footer>
+
+<!-- ==================== NUGGET RAIN ==================== -->
+
+<div
+    class="nugget-rain-container"
+    id="nuggetRainContainer"
+></div>
+
+<script>
+
+    function spawnNugget() {
+
+        var container =
+            document.getElementById(
+                "nuggetRainContainer"
+            );
+
+        if (!container) {
+            return;
+        }
+
+        var nugget =
+            document.createElement("div");
+
+        nugget.className =
+            "falling-nugget";
+
+        var emojiList = [
+            "🍗",
+            "🍿"
+        ];
+
+        var randomIndex =
+            Math.floor(
+                Math.random() *
+                emojiList.length
+            );
+
+        nugget.innerText =
+            emojiList[randomIndex];
+
+        var isLeft =
+            Math.random() < 0.5;
+
+        var leftPosition;
+
+        if (isLeft) {
+
+            leftPosition =
+                5 + (Math.random() * 15);
+
+        } else {
+
+            leftPosition =
+                80 + (Math.random() * 15);
+
+        }
+
+        nugget.style.left =
+            leftPosition + "vw";
+
+        var duration =
+            Math.random() * 4 + 3;
+
+        nugget.style.animationDuration =
+            duration + "s";
+
+        var size =
+            Math.random() * 25 + 15;
+
+        nugget.style.fontSize =
+            size + "px";
+
+        container.appendChild(
+            nugget
+        );
+
+        setTimeout(function() {
+
+            if (
+                nugget &&
+                nugget.parentNode
+            ) {
+
+                nugget.parentNode
+                    .removeChild(nugget);
+
+            }
+
+        }, duration * 1000);
+
+    }
+
+    setInterval(function() {
+        spawnNugget();
+    }, 200);
+
+</script>
+
+</body>
+</html>

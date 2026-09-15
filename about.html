@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Nuggetology</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #261105 50%, #0d0d0d 100%);
+            background-attachment: fixed;
+            color: #e0e0e0;
+        }
+
+        /* ---------- FIXED HEADER ---------- */
+        header {
+            background: linear-gradient(90deg, #ff512f 0%, #f09819 100%);
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo:hover {
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #000000;
+            transform: scale(1.2);
+        }
+
+        /* ---------- PAGE TITLE ---------- */
+        .page-title {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(233, 103, 17, 0.15);
+            border-bottom: 1px solid rgba(233, 103, 17, 0.3);
+        }
+
+        .page-title h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ff8432;
+            text-shadow: 0 2px 10px rgba(255, 132, 50, 0.3);
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #b0b0b0;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 35px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            transition: 0.3s ease;
+        }
+
+        .about:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(233, 103, 17, 0.25);
+            border-color: #e96711;
+        }
+        
+        .about h2 {
+            color: #ff8432;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #cccccc;
+        }
+
+        .mission {
+            background-color: #2d1609;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #52260f;
+        }
+
+        .mission h2 {
+            color: #ffa162;
+        }
+
+        .mission p {
+            color: #e0e0e0;
+        }
+
+        /* ---------- CONTACT US ---------- */
+        .contact {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #ff8432;
+        }
+
+        .contact > p {
+            margin-bottom: 30px;
+            color: #b0b0b0;
+        }
+
+        .contact-form {
+            background-color: #1a1a1a;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333333;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #ff8432;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: #262626;
+            border: 2px solid #404040;
+            border-radius: 7px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: white;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #e96711;
+            background-color: #2d2d2d;
+            box-shadow: 0 0 10px rgba(233, 103, 17, 0.3);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            background-color: #e96711;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(233, 103, 17, 0.2);
+        }
+
+        .contact-form button:hover {
+            background-color: #ff8432;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 132, 50, 0.4);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background-color: #0d0d0d;
+            color: #888888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #222222;
+        }
+
+        /* ---------- NUGGET RAIN CSS ---------- */
+        .nugget-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99999;
+            overflow: hidden;
+        }
+
+        .falling-nugget {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">🧽 Nuggetology</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="tips.html">Tips</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <section class="page-title">
+        <h1>👋 About Nuggetology</h1>
+        <p>The science of snacking.</p>
+    </section>
+
+    <section class="about">
+        <h2>What is Nuggetology?</h2>
+        <p>
+            Nuggetology was originally meant to be a joke website about
+            making a 1 kg nugget, but it transformed into a simple recipe
+            website made for students.
+        </p>
+
+        <h2>Why Students?</h2>
+        <p>
+            I was a student too, and didn't have much time to make food.
+            So I made this website to help other busy students find
+            quick, easy and affordable snacks.
+        </p>
+
+        <div class="mission">
+            <h2>🧽 Our Mission</h2>
+            <p>
+                To help hungry students make snacks with less effort,
+                less money and, of course, more nuggets.
+            </p>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>📬 Contact Nuggetology (Itthinat 38500 M3/4 15)</h2>
+        <p>
+            Got a recipe idea, snack emergency, or just really love
+            nuggets? Let us know!
+        </p>
+
+        <form class="contact-form" action="https://formsubmit.co/15.itthinat@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Message from Nuggetology Website!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="Name" placeholder="Enter your name" required>
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="Email" placeholder="Enter your email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="Message" placeholder="Tell us what's on your mind..." required></textarea>
+
+            <button type="submit">Send Message 🍗</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nuggetology | The Science of Snacking</p>
+    </footer>
+
+        <!-- ==================== FIXED NUGGET RAIN (SAFE VERSION) ==================== -->
+    <div class="nugget-rain-container" id="nuggetRainContainer"></div>
+
+    <script type="text/javascript">
+        function spawnNugget() {
+            var elContainer = document.getElementById("nuggetRainContainer");
+            if (!elContainer) {
+                return;
+            }
+
+            var elNugget = document.createElement("div");
+            elNugget.className = "falling-nugget";
+            
+            var emojiList = ["🍗", "🍿"];
+            var randomIndex = Math.floor(Math.random() * emojiList.length);
+            elNugget.innerText = emojiList[randomIndex];
+
+            var leftSide = Math.random() < 0.5;
+            var finalLeft = 0;
+            if (leftSide === true) {
+                finalLeft = 5 + (Math.random() * 15);
+            } else {
+                finalLeft = 80 + (Math.random() * 15);
+            }
+            
+            elNugget.style.left = finalLeft + "vw";
+
+            var fallDuration = Math.random() * 4 + 3;
+            elNugget.style.animationDuration = fallDuration + "s";
+            
+            var calculatedSize = Math.random() * 25 + 15;
+            elNugget.style.fontSize = calculatedSize + "px";
+
+            elContainer.appendChild(elNugget);
+
+            setTimeout(function() {
+                if (elNugget && elNugget.parentNode) {
+                    elNugget.parentNode.removeChild(elNugget);
+                }
+            }, fallDuration * 1000);
+        }
+
+        setInterval(function() {
+            spawnNugget();
+        }, 200);
+    </script>
+
+</body>
+</html>
